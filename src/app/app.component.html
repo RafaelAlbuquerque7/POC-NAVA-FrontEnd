@@ -4,7 +4,9 @@
   <form (submit)="saveUser()" style="margin-bottom: 20px;">
     <input [(ngModel)]="newUser.name" name="name" placeholder="Name" required />
     <input [(ngModel)]="newUser.email" name="email" placeholder="Email" required />
-    <button type="submit">Save</button>
+    <input [(ngModel)]="newUser.dataNascimento" name="dataNascimento" type="date" placeholder="Data de Nascimento" required />
+    <input [(ngModel)]="newUser.senha" name="senha" type="password" placeholder="Senha" required />
+    <button type="submit">{{ editMode ? 'Update' : 'Save' }}</button>
   </form>
 
   <table border="1" style="width: 100%; text-align: left;">
@@ -12,6 +14,8 @@
       <tr>
         <th>Name</th>
         <th>Email</th>
+        <th>Data de Nascimento</th>
+        <th>Senha</th>
         <th>Actions</th>
       </tr>
     </thead>
@@ -19,6 +23,8 @@
       <tr *ngFor="let user of users">
         <td>{{ user.name }}</td>
         <td>{{ user.email }}</td>
+        <td>{{ user.dataNascimento | date:'shortDate' }}</td>
+        <td>{{ user.senha }}</td>
         <td>
           <button (click)="editUser(user)">Edit</button>
           <button (click)="deleteUser(user.id)">Delete</button>
@@ -27,3 +33,4 @@
     </tbody>
   </table>
 </div>
+
